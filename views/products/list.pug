@@ -1,0 +1,31 @@
+extends /includes/base
+
+block action_buttons
+	a.mdl-button.mdl-js-button.header-bar--link( href="/produtos/novo" ) Cadastrar novo
+
+block body
+	div.mdl-grid
+	
+		div.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col
+			
+			if products && products.length
+				ul.mdl-list.products-list
+
+					for product in products
+						li.mdl-list__item.mdl-list__item--two-line
+							span.mdl-list__item-primary-content
+								span= product.name
+								span.mdl-list__item-sub-title Preço de venda: #{product.price_final.toLocaleString( 'pt-br', { style: 'currency', currency: 'BRL' } )}
+
+							span.mdl-list__item-secondary-content
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( href="/produtos/editar/"+ product._id )
+									i.material-icons( id="link-edit-"+ product._id ) mode_edit
+									span.mdl-tooltip( for="link-edit-"+ product._id ) Editar produto
+
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent( href="/produtos/excluir/"+ product._id )
+									i.material-icons( id="link-delete-"+ product._id ) delete
+									span.mdl-tooltip( for="link-delete-"+ product._id ) Excluir produto
+
+
+			else
+				div.mdl-grid Não há produtos

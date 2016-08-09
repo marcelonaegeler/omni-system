@@ -1,0 +1,65 @@
+extends /includes/base
+
+block body
+
+	div.mdl-grid
+
+	form.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid(action="/produtos/"+ ( product ? 'edit' : 'save' ), method="POST", enctype="application/x-www-form-urlencoded")
+
+		div.mdl-cell.mdl-cell--6-col
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_code.mdl-textfield__input( name="code", value=( product ? product.code : '' ), required )
+				label.mdl-textfield__label( for="input_code" ) Código
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_name.mdl-textfield__input( name="name", value=( product ? product.name : '' ), required )
+				label.mdl-textfield__label( for="input_name" ) Nome
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_points.mdl-textfield__input( name="points", value=( product ? product.points : '' ), required, type="number" )
+				label.mdl-textfield__label( for="input_points" ) Pontos
+				span.mdl-textfield__error Pontos precisa ser um número
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_final_price.mdl-textfield__input( name="price_final", value=( product ? product.price_final : '' ), required, type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_final" ) Preço final
+				span.mdl-textfield__error Valores precisam ser números
+
+
+		div.mdl-cell.mdl-cell--6-col
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_20.mdl-textfield__input( name="price_20", value=( product ? product.price_20 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_20" ) Valor (20%)
+				span.mdl-textfield__error Valores precisam ser números
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_25.mdl-textfield__input( name="price_25", value=( product ? product.price_25 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_25" ) Valor (25%)
+				span.mdl-textfield__error Valores precisam ser números
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_30.mdl-textfield__input( name="price_30", value=( product ? product.price_30 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_30" ) Valor (30%)
+				span.mdl-textfield__error Valores precisam ser números
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_35.mdl-textfield__input( name="price_35", value=( product ? product.price_35 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_35" ) Valor (35%)
+				span.mdl-textfield__error Valores precisam ser números
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_40.mdl-textfield__input( name="price_40", value=( product ? product.price_40 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_40" ) Valor (40%)
+				span.mdl-textfield__error Valores precisam ser números
+
+			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#input_price_50.mdl-textfield__input( name="price_50", value=( product ? product.price_50 : '' ), type="number", step="0.01" )
+				label.mdl-textfield__label( for="input_price_50" ) Valor (50%)
+				span.mdl-textfield__error Valores precisam ser números
+
+		
+		div.mdl-cell.mdl-cell--12-col.text-center
+			input(type="hidden", name="_id", value=( product ? product._id : '' ) )
+			button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar

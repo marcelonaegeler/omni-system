@@ -1,0 +1,23 @@
+doctype
+html
+	head
+		title= title
+
+		meta(name="theme-color", content="#692C91")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link( href="/build/material.min.css", type="text/css", rel="stylesheet" )
+		link( href="/css/master.css", type="text/css", rel="stylesheet" )
+		link( href="/fonts/fonts.css", type="text/css", rel="stylesheet" )
+
+		block styles
+	body
+
+		div.mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-layout--fixed-drawer
+			
+			include /includes/header
+			
+			main.mdl-layout__content.mdl-color--grey-100
+				block body
+
+		script( src="/build/material.min.js", type="text/javascript" )
+		block scripts

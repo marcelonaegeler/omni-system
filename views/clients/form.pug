@@ -1,0 +1,59 @@
+extends /includes/base
+
+block body
+
+	div.mdl-grid
+		form.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid(action="/clientes/"+ ( client ? 'edit' : 'save' ) , method="POST", enctype="application/x-www-form-urlencoded")
+
+			div.mdl-cell.mdl-cell--6-col
+				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#input_name.mdl-textfield__input( name="name", value=client ? client.name : '', required )
+					label.mdl-textfield__label( for="input_name" ) Nome
+
+				div
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_phone.mdl-textfield__input( name="phone", value=client ? client.phone : '' )
+						label.mdl-textfield__label( for="input_phone" ) Telefone
+
+				div
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_address.mdl-textfield__input( name="address", value=client ? client.address : '' )
+						label.mdl-textfield__label( for="input_address" ) Endereço
+
+				div
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_height.mdl-textfield__input( name="height", type="number", value=( client ? client.height : '' ) )
+						label.mdl-textfield__label( for="input_height" ) Altura 
+							small (em centímetros)
+
+				div
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_weight.mdl-textfield__input( name="weight", type="number", value=( client ? client.weight : '' ) )
+						label.mdl-textfield__label( for="input_weight" ) Peso
+							small (em kilogramas)
+
+				div
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						textarea#input_info.mdl-textfield__input( name="information", rows="2" ) #{client ? client.information : ''}
+						label.mdl-textfield__label( for="input_info" ) Mais informações
+
+
+			div.mdl-cell.mdl-cell--6-col
+				h5 Produtos de interesse
+
+				if products && products.length
+
+					ul.mdl-list
+
+						for product in products
+							li.mdl-list__item
+								span.mdl-list__item-primary-content= product.name
+								span.mdl-list__item-secondary-content
+									label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect
+										input.mdl-checkbox__input.add_products( type="checkbox", name="interests[]", value=product._id, checked=( client && client.interests.indexOf( product._id.toString() ) > -1 ? true : false ) )
+
+
+			div.mdl-cell.mdl-cell--12-col.text-center
+				input(type="hidden", name="_id", value=client ? client._id : '')
+				button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar
+

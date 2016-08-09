@@ -1,0 +1,35 @@
+extends /includes/base
+
+block action_buttons
+	a.mdl-button.mdl-js-button.header-bar--link( href="/clientes/novo" ) Cadastrar novo
+
+block body
+
+	div.mdl-grid
+		
+		div.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
+			if clients && clients.length
+				ul.mdl-list
+					for client in clients
+
+						li.mdl-list__item.mdl-list__item--two-line
+							span.mdl-list__item-primary-content
+								a( id="link-edit-client-"+ client._id, href="/clientes/editar/"+ client._id )
+									span= client.name
+								span.mdl-tooltip( for="link-edit-client-"+ client._id ) Ver informações/editar
+								span.mdl-list__item-sub-title= client.phone
+
+							span.mdl-list__item-secondary-content
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( id="link-edit-client-"+ client._id, href="/pedidos/novo/"+ client._id )
+									i.material-icons( id="link-order-"+ client._id ) shopping_cart
+									span.mdl-tooltip( for="link-order-"+ client._id ) Fazer pedido
+
+								//- a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( href="/clientes/editar/"+ client._id )
+									i.material-icons mode_edit
+
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent( href="/clientes/excluir/"+ client._id )
+									i.material-icons( id="link-client-"+ client._id ) delete
+									span.mdl-tooltip( for="link-client-"+ client._id ) Excluir cliente
+
+			else
+				| Não há clientes

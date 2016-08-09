@@ -1,0 +1,80 @@
+extends /includes/base
+
+block body
+
+	div.mdl-grid
+		form.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid(action="/pedidos/"+ ( order ? 'edit' : 'save' ) , method="POST", enctype="application/x-www-form-urlencoded")
+			input( type="hidden", name="client_id", value=( client._id ) )
+
+			div.mdl-cell.mdl-cell--12-col.mdl-grid
+				span 
+					b Novo pedido 
+					br 
+					span.mdl-color-text--grey-500 #{client.name}
+
+			div.mdl-cell.mdl-cell--6-col.mdl-grid
+				div.mdl-cell.mdl-cell--6-col
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_date_order.mdl-textfield__input( name="date_order", value=( order ? order.date_order : today ), required )
+						label.mdl-textfield__label( for="input_date_order" ) Data do pedido
+
+				div.mdl-cell.mdl-cell--6-col
+					div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#input_date_delivery.mdl-textfield__input( name="date_delivery", value=( order ? order.date_delivery : today ), required )
+						label.mdl-textfield__label( for="input_date_delivery" ) Data de entrega
+
+
+			div.mdl-cell.mdl-cell--12-col
+			div.mdl-cell.mdl-cell--6-col
+
+				p Selecione na lista de produtos ao lado os produtos para o pedido.
+
+				table.mdl-data-table.mdl-js-data-table
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Produto
+							th Quantidade
+							th Valor
+					tbody#display-order
+						if order && order.products && order.products.length
+							for product in order.products
+								tr
+									td= product.name
+									td
+										input.mdl-textfield__input.input_quantity( type="number", name="quantity[]", value=product.quantity, data-id=product._id )/
+										input( type="hidden", name="product_id[]", value=product._id )/
+									td= product.price.toLocaleString( 'pt-br', { style: 'currency', currency: 'BRL' } )
+						else
+							tr
+								td.text-center( colspan="3" ) Selecione produtos ao lado para o pedido.
+					tfooter
+						tr
+							td( colspan="3" ) Total: 
+								b#display-total= ( order ? order.final_price : 0 ).toLocaleString( 'pt-br', { style: 'currency', currency: 'BRL' } )
+								input#input-total( type="hidden", name="final_price", value=( order ? order.final_price : 0 ) )
+
+			div.mdl-cell.mdl-cell--6-col
+				h5 Produtos para venda
+
+				if products.length
+
+					ul.mdl-list
+
+						for product in products
+							li.mdl-list__item
+								span.mdl-list__item-primary-content= product.name
+								span.mdl-list__item-secondary-content
+									label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect
+										input.mdl-checkbox__input.add_products( type="checkbox", value=product._id, data-name=product.name, data-price=product.price_final, checked=( order && Helpers.hasInArrayObject( order.products, '_id', product._id ) ) )
+
+
+			div.mdl-cell.mdl-cell--12-col.text-center
+				input(type="hidden", name="_id", value=order ? order._id : '')
+				button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar
+
+
+block scripts
+	if order
+		script.
+			var Data = !{JSON.stringify( order.products )};
+	script( src="/js/orders.js" )

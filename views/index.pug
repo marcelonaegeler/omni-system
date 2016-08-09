@@ -1,0 +1,40 @@
+extends /includes/base
+
+block body
+	div.mdl-grid
+		div.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
+
+			h5 Seja bem-vindo!
+			p Muito obrigado por utilizar o OmniSystem. Espero que tenho a melhor experiência possível no uso do sistema. Para isso, confira abaixo o que já é possível fazer com o sistema: 
+
+			ul.mdl-list
+
+				li.mdl-list__item.mdl-list__item--three-line
+
+					span.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar local_mall
+						span Produtos 
+							a( href="/produtos" )
+								i#link-products.material-icons.font-14 open_in_new
+								span.mdl-tooltip( for="link-products" ) Abrir
+						span.mdl-list__item-text-body Na página de produtos você poderá editar os preços e informações dos produtos.
+
+				li.mdl-list__item.mdl-list__item--three-line
+
+					span.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar people
+						span Clientes 
+							a( href="/clientes" )
+								i#link-clients.material-icons.font-14 open_in_new
+								span.mdl-tooltip( for="link-clients" ) Abrir
+						span.mdl-list__item-text-body Em clientes, você pode gerenciar seus clientes. Peso, altura, dados de contatos e endereço. Também há a opção de marcar produtos em que o cliente é interessado e gerar pedidos para o cliente.
+
+				li.mdl-list__item.mdl-list__item--three-line
+
+					span.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-avatar shopping_cart
+						span Pedidos 
+							a( href="/pedidos" )
+								i#link-order.material-icons.font-14 open_in_new
+								span.mdl-tooltip( for="link-order" ) Abrir
+						span.mdl-list__item-text-body Página em que são listados os pedidos dos clientes. Aqui você poderá também editar e excluir os pedidos que desejar.
