@@ -1,0 +1,42 @@
+doctype
+html
+	head
+		title= title
+
+		meta( name="theme-color", content="#692C91" )
+		meta( name="viewport", content="width=device-width, initial-scale=1.0" )
+		link( href="/build/material.min.css", type="text/css", rel="stylesheet" )
+		link( href="/css/master.css", type="text/css", rel="stylesheet" )
+		link( href="/fonts/fonts.css", type="text/css", rel="stylesheet" )
+
+		block styles
+
+	body.mdl-color--grey-100.login-page
+
+		div.mdl-layout.mdl-js-layout
+			main.mdl-layout__content
+
+
+				div.mdl-card.mdl-shadow--6dp
+					form( action="/authenticate", method="POST" )
+
+						div.mdl-card__title.mdl-color--primary.mdl-color-text--white
+							h2.mdl-card__title-text OmniSystem
+
+						div.mdl-card__supporting-text
+
+							div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+								input.mdl-textfield__input( type="email", name="email", id="email" )
+								label.mdl-textfield__label( for="email" ) E-mail
+
+							div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+								input.mdl-textfield__input( type="password", name="password", id="password" )
+								label.mdl-textfield__label( for="password" ) Senha
+
+						div.mdl-card__actions.mdl-card--border
+							button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect( type="submit" ) Entrar
+
+							a( href="/cadastrar" ) Não tenho conta
+
+		script( src="/build/material.min.js", type="text/javascript" )
+		block scripts

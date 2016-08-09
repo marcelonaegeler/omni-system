@@ -31,3 +31,12 @@
 .mdl-data-table td {
 	padding: 12px !important;
 }
+
+.login-page .mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.login-page .mdl-layout__content {
+	padding: 24px;
+	flex: none;
+}

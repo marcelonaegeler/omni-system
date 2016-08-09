@@ -15,14 +15,20 @@ div.mdl-layout__drawer
 		b Omni
 		| System
 
+		if user
+			p #{user.name} 
+				a( href="/logout" ) Sair
+
 	nav.mdl-navigation
-		a.mdl-navigation__link( href="/" ) 
+		a.mdl-navigation__link( href="/home" ) 
 			i.mdl-color-text--blue-grey-400.material-icons(role="presentation") home 
 			| Home
 
-		a.mdl-navigation__link( href="/produtos" ) 
-			i.mdl-color-text--blue-grey-400.material-icons(role="presentation") local_mall 
-			| Produtos
+
+		if user && !!user.admin
+			a.mdl-navigation__link( href="/produtos" ) 
+				i.mdl-color-text--blue-grey-400.material-icons(role="presentation") local_mall 
+				| Produtos
 
 		a.mdl-navigation__link( href="/clientes" ) 
 			i.mdl-color-text--blue-grey-400.material-icons(role="presentation") people 
@@ -31,3 +37,7 @@ div.mdl-layout__drawer
 		a.mdl-navigation__link( href="/pedidos" ) 
 			i.mdl-color-text--blue-grey-400.material-icons(role="presentation") shopping_cart 
 			| Pedidos
+
+		a.mdl-navigation__link( href="/estoque" ) 
+			i.mdl-color-text--blue-grey-400.material-icons(role="presentation") storage 
+			| Estoque

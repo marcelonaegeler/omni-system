@@ -1,6 +1,8 @@
 var express = require( 'express' )
 	, app = express()
 	, bodyParser = require( 'body-parser' )
+	, session = require( 'express-session' )
+	, auth = require( './controllers/AuthController' )
 	;
 
 app.use( express.static( 'public' ) );
@@ -13,10 +15,18 @@ app.set( 'json spaces', 4 );
 
 app.locals.basedir = __dirname + '/views';
 
+app.use( session( { 
+	secret: 'organização é sucesso'
+	, cookie: { maxAge: ( 60000 * 60 * 24 ) } 
+	, resave: false
+	, saveUninitialized: false
+}));
+
 app.use( '/', require( './routes/index' ) );
-app.use( '/produtos', require( './routes/products' ) );
-app.use( '/clientes', require( './routes/clients' ) );
-app.use( '/pedidos', require( './routes/orders' ) );
+app.use( '/produtos', auth.isLogged, require( './routes/products' ) );
+app.use( '/clientes', auth.isLogged, require( './routes/clients' ) );
+app.use( '/pedidos', auth.isLogged, require( './routes/orders' ) );
+app.use( '/estoque', auth.isLogged, require( './routes/stock' ) );
 
 var server = app.listen( 3000, function () {
 	console.log( 'Listening on :3000' );

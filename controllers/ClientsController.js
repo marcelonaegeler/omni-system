@@ -6,32 +6,36 @@ var mongoskin = require( '../config_db' )
 	;
 
 var clientSchema = function ( data ) {
-	return {
+	var d = {
 		name: data.name
 		, phone: data.phone
 		, address: data.address
 		, height: +data.height
 		, weight: +data.weight
 		, information: data.information
-		, created_at: new Date()
 		, edited_at: new Date()
-
-		, interests: data.interests
+		, interests: data.interests || []
 	};
+
+	if ( !data ) {
+		d.created_at = new Date();
+	}
+
+	return d;
 };
 
 routes.getIndex = function ( req, res ) {
 	db.bind( 'clients' );
 
 	db.clients.find().toArray( function ( err, items ) {
-		return res.render( 'clients/list', { title: 'Clientes', clients: items } );
+		return res.render( 'clients/list', { title: 'Clientes - OmniSystem', clients: items } );
 	});
 };
 
 routes.getNew = function ( req, res ) {
 	db.bind( 'products' );
 	db.products.find().toArray( function ( err, products ) {
-		return res.render( 'clients/form', { title: 'Novo cliente', products: products } );
+		return res.render( 'clients/form', { title: 'Novo cliente - OmniSystem', products: products } );
 	});
 };
 
@@ -53,7 +57,7 @@ routes.getEdit = function ( req, res ) {
 			, products: getProducts
 		}
 		, function ( err, results ) {
-			return res.render( 'clients/form', { title: 'Editar cliente', client: results.client, products: results.products } );
+			return res.render( 'clients/form', { title: 'Editar cliente - OmniSystem', client: results.client, products: results.products } );
 		}
 	);
 
