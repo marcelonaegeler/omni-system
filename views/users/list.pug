@@ -1,0 +1,30 @@
+extends ../includes/base
+
+block body
+	div.mdl-grid
+		
+		div.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
+			if users && users.length
+				ul.mdl-list
+					for user in users
+						
+						li.mdl-list__item.mdl-list__item--two-line
+							span.mdl-list__item-primary-content
+								span= user.name
+								span.mdl-list__item-sub-title
+									if user.admin
+										| Administrador
+
+							span.mdl-list__item-secondary-content
+
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( href="/usuarios/editar/"+ user._id )
+									i.material-icons( id="link-user-edit-"+ user._id ) mode_edit
+									span.mdl-tooltip( for="link-user-edit-"+ user._id ) Ver informações/editar
+
+								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent( href="/usuarios/excluir/"+ user._id )
+									i.material-icons( id="link-user-"+ user._id ) delete
+									span.mdl-tooltip( for="link-user-"+ user._id ) Excluir usuário
+
+
+			else
+				| Não há usuários cadastrados

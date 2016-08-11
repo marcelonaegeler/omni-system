@@ -15,7 +15,7 @@ block body
 						li.mdl-list__item.mdl-list__item--two-line
 							span.mdl-list__item-primary-content
 								span= product.name
-								span.mdl-list__item-sub-title Preço de venda: #{product.price_final.toLocaleString( 'pt-br', { style: 'currency', currency: 'BRL' } )}
+								span.mdl-list__item-sub-title= product.code
 
 							span.mdl-list__item-secondary-content
 								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( href="/produtos/editar/"+ product._id )

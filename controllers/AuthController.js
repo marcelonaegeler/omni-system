@@ -11,13 +11,28 @@ Auth.isLogged = function ( req, res, next ) {
 	db.bind( 'users' );
 	db.users.findById( req.session.user_id, function ( err, user ) {
 		if ( !user || err ) {
+			// delete req.app.locals.User;
 			return res.redirect( '/login' );
 		}
-		req.app.locals.user = user;
+		req.app.locals.User = user;
 
 		return next();
 	});
- 
+};
+
+Auth.isAdmin = function ( req, res, next ) {
+	if ( !req.session.user_id ) {
+		return res.redirect( '/login' );
+	}
+
+	db.bind( 'users' );
+	db.users.findById( req.session.user_id, function ( err, user ) {
+		if ( err || !user || !user.admin ) {
+			return res.redirect( '/login' );
+		}
+
+		return next();
+	});
 };
 
 module.exports = Auth;

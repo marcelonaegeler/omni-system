@@ -1,0 +1,27 @@
+extends ../includes/base
+
+block body
+
+	div.mdl-grid
+		form.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid( action=( user ? '/usuarios/edit' : '/register' ), method="POST", enctype="application/x-www-form-urlencoded" )
+			input( type="hidden", name="_id", value=user ? user._id : '' )
+
+			div.mdl-cell.mdl-cell--6-col
+				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#input_name.mdl-textfield__input( name="name", value=user ? user.name : '' )
+					label.mdl-textfield__label( for="input_name" ) Nome
+
+				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#input_phone.mdl-textfield__input( type="phone", name="phone", value=user ? user.phone : '' )
+					label.mdl-textfield__label( for="input_phone" ) Telefone
+
+				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#input_email.mdl-textfield__input( type="email", name="email", value=user ? user.email : '', required )
+					label.mdl-textfield__label( for="input_email" ) E-mail
+
+				div.mdl-checkbox.mdl-js-checkbox.mdl-textfield--floating-label
+					input#input_admin.mdl-checkbox__input( type="checkbox", name="admin", checked=user ? user.admin : false )
+					label.mdl-checkbox__label( for="input_admin" ) Administrador
+
+			div.mdl-cell.mdl-cell--12-col.text-center
+				button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar
