@@ -9,7 +9,6 @@ var userSchema = function ( data ) {
 		, phone: data.phone
 		, email: data.email
 		, admin: !!data.admin
-		, stocks: []
 	};
 
 	if ( data.password ) {
