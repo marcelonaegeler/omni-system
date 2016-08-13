@@ -21,7 +21,8 @@ block body
 				label.mdl-textfield__label( for="input_points" ) Pontos
 				span.mdl-textfield__error Pontos precisa ser um número
 
-			div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+			
+			//- div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 				input#input_final_price.mdl-textfield__input( name="price_final", value=( product ? product.price_final : '' ), required, type="number", step="0.01" )
 				label.mdl-textfield__label( for="input_price_final" ) Preço final
 				span.mdl-textfield__error Valores precisam ser números

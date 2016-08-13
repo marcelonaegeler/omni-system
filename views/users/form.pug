@@ -23,5 +23,11 @@ block body
 					input#input_admin.mdl-checkbox__input( type="checkbox", name="admin", checked=user ? user.admin : false )
 					label.mdl-checkbox__label( for="input_admin" ) Administrador
 
+			//- div.mdl-cell.mdl-cell--6-col
+				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#input_password.mdl-textfield__input( type="password", name="password" )
+					label.mdl-textfield__label( for="input_password" ) Senha 
+						| (preencha somente se desejar editar sua senha)
+
 			div.mdl-cell.mdl-cell--12-col.text-center
 				button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar

@@ -101,4 +101,11 @@ router.getLogout = function ( req, res ) {
 	return res.redirect( '/login' );
 };
 
+router.getMyAccount = function ( req, res ) {
+	db.bind( 'users' );
+	db.users.findById( req.session.user_id, function ( err, user ) {
+		return res.render( 'users/form', { title: 'Minha conta - OmniSystem', user: user, myAccount: true } );
+	});
+};
+
 module.exports = router;

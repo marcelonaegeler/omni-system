@@ -24,6 +24,9 @@ router.get( '/usuarios', auth.isLogged, auth.isAdmin, controller.getIndex );
 router.get( '/usuarios/editar/:id', auth.isLogged, auth.isAdmin, controller.getEdit );
 router.get( '/usuarios/excluir/:id', auth.isLogged, auth.isAdmin, controller.getDelete );
 
+
+router.get( '/minha-conta', auth.isLogged, controller.getMyAccount );
+
 router.post( '/usuarios/edit', controller.postEdit );
 
 module.exports = router;
