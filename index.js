@@ -3,6 +3,7 @@ var express = require( 'express' )
 	, bodyParser = require( 'body-parser' )
 	, session = require( 'express-session' )
 	, auth = require( './controllers/AuthController' )
+	, port = process.env.PORT || 3000
 	;
 
 app.use( express.static( 'public' ) );
@@ -28,6 +29,6 @@ app.use( '/clientes', auth.isLogged, require( './routes/clients' ) );
 app.use( '/pedidos', auth.isLogged, require( './routes/orders' ) );
 app.use( '/estoque', auth.isLogged, require( './routes/stock' ) );
 
-var server = app.listen( 3000, function () {
-	console.log( 'Listening on :3000' );
+var server = app.listen( port, function () {
+	console.log( 'Listening on :'+ port );
 });

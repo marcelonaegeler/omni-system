@@ -65,7 +65,7 @@ router.getIndex = function ( req, res ) {
 
 	db.bind( 'users' );
 	db.users.find().toArray( function ( err, users ) {
-		return res.render( 'users/list', { title: 'Usuários - OmniSystem', users: users } );
+		return res.render( 'users/list', { title: 'Usuários', users: users } );
 	});
 };
 
@@ -104,7 +104,7 @@ router.getLogout = function ( req, res ) {
 router.getMyAccount = function ( req, res ) {
 	db.bind( 'users' );
 	db.users.findById( req.session.user_id, function ( err, user ) {
-		return res.render( 'users/form', { title: 'Minha conta - OmniSystem', user: user, myAccount: true } );
+		return res.render( 'users/form', { title: 'Minha conta', user: user, myAccount: true } );
 	});
 };
 

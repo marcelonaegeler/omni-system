@@ -21,14 +21,14 @@ var stockSchema = function ( data ) {
 
 
 routes.getIndex = function ( req, res ) {
-	return res.render( 'stock/list', { title: 'Estoque - OmniSystem' } );
+	return res.render( 'stock/list', { title: 'Estoque' } );
 };
 
 routes.getAdd = function ( req, res ) {
 
 	db.bind( 'products' );
 	db.products.find().toArray( function ( err, items ) {
-		return res.render( 'stock/form', { title: 'Adicionar estoque - OmniSystem', products: items } );
+		return res.render( 'stock/form', { title: 'Adicionar estoque', products: items } );
 	});
 };
 

@@ -15,6 +15,7 @@ var clientSchema = function ( data ) {
 		, information: data.information
 		, edited_at: new Date()
 		, interests: data.interests || []
+		, user_id: data.user_id
 	};
 
 	if ( !data ) {
@@ -27,15 +28,15 @@ var clientSchema = function ( data ) {
 routes.getIndex = function ( req, res ) {
 	db.bind( 'clients' );
 
-	db.clients.find().toArray( function ( err, items ) {
-		return res.render( 'clients/list', { title: 'Clientes - OmniSystem', clients: items } );
+	db.clients.find({ user_id: req.session.user_id }).toArray( function ( err, items ) {
+		return res.render( 'clients/list', { title: 'Clientes', clients: items } );
 	});
 };
 
 routes.getNew = function ( req, res ) {
 	db.bind( 'products' );
 	db.products.find().toArray( function ( err, products ) {
-		return res.render( 'clients/form', { title: 'Novo cliente - OmniSystem', products: products } );
+		return res.render( 'clients/form', { title: 'Novo cliente', products: products } );
 	});
 };
 
@@ -57,7 +58,7 @@ routes.getEdit = function ( req, res ) {
 			, products: getProducts
 		}
 		, function ( err, results ) {
-			return res.render( 'clients/form', { title: 'Editar cliente - OmniSystem', client: results.client, products: results.products } );
+			return res.render( 'clients/form', { title: 'Editar cliente', client: results.client, products: results.products } );
 		}
 	);
 
@@ -78,6 +79,8 @@ routes.postNew = function ( req, res ) {
 	}
 
 	db.bind( 'clients' );
+	req.body.user_id = req.session.user_id;
+	
 	db.clients.insert( clientSchema( req.body ) );
 
 	return res.redirect( '/clientes' );
@@ -88,6 +91,8 @@ routes.postEdit = function ( req, res ) {
 		return res.redirect( '/cliente/'+ req.params.id );
 	}
 
+	req.body.user_id = req.session.user_id;
+	
 	db.bind( 'clients' );
 	db.clients.update( 
 		{ _id: mongo.helper.toObjectID( req.body._id ) }

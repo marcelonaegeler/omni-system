@@ -26,18 +26,18 @@ routes.getIndex = function ( req, res ) {
 	db.bind( 'products' );
 
 	db.products.find().toArray( function ( err, items ) {
-		return res.render( 'products/list', { title: 'Produtos - OmniSystem', products: items } );
+		return res.render( 'products/list', { title: 'Produtos', products: items } );
 	});
 };
 
 routes.getNew = function ( req, res ) {
-	return res.render( 'products/form', { title: 'Novo produto - OmniSystem' } );
+	return res.render( 'products/form', { title: 'Novo produto' } );
 };
 
 routes.getEdit = function ( req, res ) {
 	db.bind( 'products' );
 	db.products.findById( req.params.id, function ( err, item ) {
-		return res.render( 'products/form', { title: 'Editar produto - OmniSystem', product: item } );
+		return res.render( 'products/form', { title: 'Editar produto', product: item } );
 	});
 };
 

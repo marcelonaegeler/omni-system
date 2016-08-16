@@ -24,7 +24,7 @@ routes.getIndex = function ( req, res ) {
 	db.bind( 'orders' );
 
 	db.orders.find().sort( { edited_at: -1 } ).toArray( function ( err, items ) {
-		return res.render( 'orders/list', { title: 'Pedidos - OmniSystem', orders: items, Parse: Parse } );
+		return res.render( 'orders/list', { title: 'Pedidos', orders: items, Parse: Parse } );
 	});
 };
 
@@ -48,7 +48,7 @@ routes.getNew = function ( req, res ) {
 		, function ( err, results ) {
 
 			var today = Parse.dateToString( new Date() );
-			return res.render( 'orders/form', { title: 'Novo pedido - OmniSystem', client: results.client, products: results.products, today: today, Helpers: Helpers } );
+			return res.render( 'orders/form', { title: 'Novo pedido', client: results.client, products: results.products, today: today, Helpers: Helpers } );
 		}
 	);
 
@@ -74,7 +74,7 @@ routes.getEdit = function ( req, res ) {
 		, function ( err, results ) {
 			var orderProducts = Helpers.mergeById( results.order.products, results.products );
 
-			return res.render( 'orders/form', { title: 'Editar Pedido - OmniSystem', order: results.order, client: results.order.client, products: results.products, Helpers: Helpers } );
+			return res.render( 'orders/form', { title: 'Editar Pedido', order: results.order, client: results.order.client, products: results.products, Helpers: Helpers } );
 		}
 	);
 };
