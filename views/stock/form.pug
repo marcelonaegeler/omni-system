@@ -7,7 +7,7 @@ block body
 
 			div.mdl-cell.mdl-cell--6-col
 				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-					select#select_product.mdl-textfield__input( name="product", required )
+					select#select_product.mdl-textfield__input( name="product_id", required )
 						for product in products
 							option( value=product._id, selected=( stock && stock.product === product._id ? true : false ) )= product.name
 					label.mdl-textfield__label( for="select_product" ) Produto
@@ -17,5 +17,8 @@ block body
 					label.mdl-textfield__label( for="input_quantity" ) Quantidade em estoque
 
 				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-					input#input_price.mdl-textfield__input( type="number", name="price", required )
+					input#input_price.mdl-textfield__input( type="number", name="price", step="0.01", required )
 					label.mdl-textfield__label( for="input_price" ) Preço de venda
+					
+				div.text-center
+					button.mdl-button.mdl-js-button.mdl-button--primary( type="submit" ) Salvar

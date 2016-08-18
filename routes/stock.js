@@ -5,6 +5,10 @@ var express = require( 'express' )
 
 router.get( '/', controller.getIndex );
 router.get( '/adicionar', controller.getAdd );
+router.get( '/editar/:id', controller.getEdit );
+
+router.post( '/save', controller.postSave );
+router.post( '/edit', controller.postEdit );
 /*
 router.get( '/novo', controller.getNew );
 

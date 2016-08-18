@@ -11,15 +11,16 @@ block body
 				ul.mdl-list
 					for stock in stocks
 
-						p uhul
-						//- li.mdl-list__item.mdl-list__item--two-line
+						
+						li.mdl-list__item.mdl-list__item--two-line
 							span.mdl-list__item-primary-content
-								a( id="link-edit-client-"+ client._id, href="/clientes/editar/"+ client._id )
-									span= client.name
-								span.mdl-tooltip( for="link-edit-client-"+ client._id ) Ver informações/editar
-								span.mdl-list__item-sub-title= client.phone
+								a( id="link-edit-stock-"+ stock._id, href="/stockes/editar/"+ stock._id )
+									span= stock.product_info.name
+								span.mdl-tooltip( for="link-edit-stock-"+ stock._id ) Ver informações/editar
+								span.mdl-list__item-sub-title= stock.product_info.name
 
-							span.mdl-list__item-secondary-content
+						
+							//- span.mdl-list__item-secondary-content
 								a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored( id="link-edit-client-"+ client._id, href="/pedidos/novo/"+ client._id )
 									i.material-icons( id="link-order-"+ client._id ) shopping_cart
 									span.mdl-tooltip( for="link-order-"+ client._id ) Fazer pedido

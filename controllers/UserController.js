@@ -37,7 +37,7 @@ router.getRegister = function ( req, res ) {
 router.postLogin = function ( req, res ) {
 	db.bind( 'users' );
 	db.users.findOne( { email: req.body.email, password: req.body.password }, function ( err, user ) {
-		console.log( user );
+		// console.log( user );
 		if ( user ) {
 			req.session.user_id = user._id;
 			return res.redirect( '/home' );
