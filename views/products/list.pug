@@ -9,10 +9,10 @@ block body
 		div.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col
 			
 			if products && products.length
-				ul.mdl-list.products-list
+				ul.mdl-list.mdl-grid
 
 					for product in products
-						li.mdl-list__item.mdl-list__item--two-line
+						li.mdl-list__item.mdl-list__item--two-line.mdl-cell.mdl-cell--4-col
 							span.mdl-list__item-primary-content
 								span= product.name
 								span.mdl-list__item-sub-title= product.code
