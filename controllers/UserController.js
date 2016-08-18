@@ -51,11 +51,9 @@ router.postRegister = function ( req, res ) {
 	db.bind( 'users' );
 	var user = userSchema( req.body );
 	db.users.insert( user, function ( err, item ) {
-		return res.redirect( '/login' );
 		console.log( item.ops[ 0 ] );
+		return res.redirect( '/login' );
 	});
-
-	return res.json( { success: true } );
 };
 
 router.getIndex = function ( req, res ) {
@@ -72,7 +70,7 @@ router.getIndex = function ( req, res ) {
 router.getEdit = function ( req, res ) {
 	db.bind( 'users' );
 	db.users.findById( req.params.id, function ( err, user ) {
-		return res.render( 'users/form', { title: 'Novo usuário', user: user } );
+		return res.render( 'users/form', { title: 'Editar usuário', user: user, isAdmin: req.isAdmin } );
 	});
 };
 
@@ -94,6 +92,7 @@ router.postEdit = function ( req, res ) {
 router.getDelete = function ( req, res ) {
 	db.bind( 'users' );
 	db.users.removeById( req.params.id );
+	return res.redirect( '/usuarios' );
 };
 
 router.getLogout = function ( req, res ) {

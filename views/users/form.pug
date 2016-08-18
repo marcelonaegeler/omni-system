@@ -19,9 +19,10 @@ block body
 					input#input_email.mdl-textfield__input( type="email", name="email", value=user ? user.email : '', required )
 					label.mdl-textfield__label( for="input_email" ) E-mail
 
-				div.mdl-checkbox.mdl-js-checkbox.mdl-textfield--floating-label
-					input#input_admin.mdl-checkbox__input( type="checkbox", name="admin", checked=user ? user.admin : false )
-					label.mdl-checkbox__label( for="input_admin" ) Administrador
+				if ( user && user.admin ) || isAdmin
+					div.mdl-checkbox.mdl-js-checkbox.mdl-textfield--floating-label
+						input#input_admin.mdl-checkbox__input( type="checkbox", name="admin", checked=user ? user.admin : false )
+						label.mdl-checkbox__label( for="input_admin" ) Administrador
 
 			//- div.mdl-cell.mdl-cell--6-col
 				div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label

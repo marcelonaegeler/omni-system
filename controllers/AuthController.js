@@ -30,6 +30,8 @@ Auth.isAdmin = function ( req, res, next ) {
 		if ( err || !user || !user.admin ) {
 			return res.redirect( '/login' );
 		}
+		
+		req.isAdmin = true;
 
 		return next();
 	});
